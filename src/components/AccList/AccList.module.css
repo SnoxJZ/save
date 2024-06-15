@@ -1,0 +1,9 @@
+.acc__list {
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 0;
+    flex-grow: 1;
+    scrollbar-width: thin;
+    scrollbar-color: #CAD4DB rgb(218, 227, 242);
+    padding-top: 10px;
+}

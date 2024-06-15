@@ -1,0 +1,112 @@
+.modal {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.2s;
+}
+
+.modal.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal__tab {
+    padding: 20px;
+    border-radius: 12px;
+    background-color: white;
+    width: 70vw;
+    transform: scale(0.5);
+    transition: 0.2s all;
+    transform-origin: center center;
+    will-change: transform, opacity;
+}
+
+.modal__tab.active {
+    transform: scale(1);
+}
+
+.modal__header-items {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 30px;
+    background-color: rgb(234, 239, 247);
+    border-radius: 12px;
+}
+
+.md__header-item {
+    cursor: pointer;
+    padding: 10px 30px;
+    border-radius: 12px;
+}
+
+.md__header-item.active {
+    background-color: rgb(110, 164, 244);
+    transition: 0.4s ease;
+}
+
+.acc__img {
+    position: relative;
+    width: 100%;
+    min-height: 100%;
+}
+
+.acc__avatar {
+    overflow: hidden;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 3px solid teal;
+}
+
+.account__status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: solid 1px rgb(234, 239, 247);
+    padding-bottom: 10px;
+    margin: 10px 20px 0 10px;
+}
+
+.account__details {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.account__details-wrapper {
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 400px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    padding: 10px 0;
+}
+
+.acc__desc h1{
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.acc__desc p, .proxy__details p{
+    font-size: 14px;
+    color: dimgray;
+}
+
+.account__connect {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 40px 10px 40px;
+    margin-top: 10px;
+    background-color: rgb(234, 239, 247);
+    border-radius: 12px;
+}
