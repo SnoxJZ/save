@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import './ModalSettings.css';
 import ModalSettingsHeader from "./ModalSettingsHeader";
-import Button from "../UI/Button";
+import Button from "../UI/Button/Button";
+import Input from "../UI/Input/Input";
 
 const ModalSettings = ({ active, setActive, children, account}) => {
     const [openTab, setOpenTab] = useState('accounts');
@@ -15,7 +16,7 @@ const ModalSettings = ({ active, setActive, children, account}) => {
                         <div className="modal__content">
                             <div className="account__details-wrapper">
                                 {account.map(acc => (
-                                        <div className="account__status">
+                                        <div className="account__status" key={acc.id}>
                                             <div className="account__details">
                                                 <div className="acc__avatar">
                                                     <img src={acc.avatar} alt="avatar" className="acc__img"/>
@@ -34,8 +35,8 @@ const ModalSettings = ({ active, setActive, children, account}) => {
                                 )}
                             </div>
                             <div className="account__connect">
-                                <Button id="tdata__conn">Войти через TData</Button>
                                 <Button id="json__conn">Войти через JSON</Button>
+                                <Input />
                             </div>
                         </div>
                     )}

@@ -30,7 +30,8 @@ function App() {
         {id: "@18", avatar: avatar, name: "Name17 Surname17", messages: 0}
     ]);
 
-    const [modalActive, setModalActive] = useState(true)
+    const [modalActive, setModalActive] = useState(false)
+
 
   return (
     <div className="App">
