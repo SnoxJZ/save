@@ -4,7 +4,7 @@ import ModalSettingsHeader from "./ModalSettingsHeader";
 import Button from "../UI/Button/Button";
 import Input from "../UI/Input/Input";
 
-const ModalSettings = ({ active, setActive, children, account}) => {
+const ModalSettings = ({ active, setActive, children, account, jsonInput, setJsonInput, handleAddUser}) => {
     const [openTab, setOpenTab] = useState('accounts');
 
     return (
@@ -35,8 +35,13 @@ const ModalSettings = ({ active, setActive, children, account}) => {
                                 )}
                             </div>
                             <div className="account__connect">
-                                <Button id="json__conn">Войти через JSON</Button>
-                                <Input />
+                                <Input
+                                    type="text"
+                                    placeholder='{ "username": "your_username", "password": "your_password" }'
+                                    value={jsonInput}
+                                    onChange={(e) => setJsonInput(e.target.value)}
+                                />
+                                <Button id="json__conn" onClick={handleAddUser}>Войти через JSON</Button>
                             </div>
                         </div>
                     )}

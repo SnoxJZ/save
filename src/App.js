@@ -6,6 +6,7 @@ import avatar from './images/avatar.jpg'
 import AccList from "./components/AccList/AccList";
 import SettingsBtn from "./components/SettingsBtn/SettingsBtn";
 import ModalSettings from "./components/ModalSettings/ModalSettings";
+import { addAccount, getUserById } from './API/user';
 
 function App() {
 
@@ -30,8 +31,20 @@ function App() {
         {id: "@18", avatar: avatar, name: "Name17 Surname17", messages: 0}
     ]);
 
-    const [modalActive, setModalActive] = useState(false)
+    const [jsonInput, setJsonInput] = useState('');
+    const [modalActive, setModalActive] = useState(false);
+    const [error, setError] = useState('');
 
+    const handleAddUser = async () => {
+        try {
+            const accObject = JSON.parse(jsonInput);
+            const addedAcc = await addAccount(accObject);
+            console.log('User created:', addedAcc);
+        } catch (err) {
+            console.error('Error creating user:', err);
+            setError('Error creating user');
+        }
+    };
 
   return (
     <div className="App">
@@ -39,7 +52,14 @@ function App() {
             <AccList account={account}/>
             <SettingsBtn setActive={setModalActive}/>
         </div>
-        <ModalSettings active={modalActive} setActive={setModalActive} account={account}/>
+        <ModalSettings
+            active={modalActive}
+            setActive={setModalActive}
+            account={account}
+            jsonInput={jsonInput}
+            setJsonInput={setJsonInput}
+            handleAddUser={handleAddUser}
+        />
     </div>
   );
 }

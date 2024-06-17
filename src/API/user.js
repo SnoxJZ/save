@@ -1,15 +1,15 @@
 import axios from 'axios';
 
-export const createUser = async (user) => {
+export const addAccount = async (account) => {
     try {
-        const response = await axios.post('/api/users', user);
+        const response = await axios.post('/api/users', account);
         return response.data;
     } catch (error) {
         throw error;
     }
 };
 
-export const getUserById = async (id) => {
+export const getAccountById = async (id) => {
     try {
         const response = await axios.get(`/api/users/${id}`);
         return response.data;
