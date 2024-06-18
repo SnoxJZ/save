@@ -6,7 +6,7 @@ import {faEnvelope} from "@fortawesome/free-solid-svg-icons";
 const DialogsHeader = () => {
     return (
         <div className="dialogs__header">
-            <button className={classes.settings} title="Настройки">
+            <button className={classes.unreaded} title="Настройки">
                 <FontAwesomeIcon icon={faEnvelope} style={{fontSize: "18px"}}/>
             </button>
         </div>

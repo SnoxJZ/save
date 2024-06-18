@@ -9,3 +9,9 @@
 .App {
     display: flex;
 }
+
+.dialogs__column {
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+}
