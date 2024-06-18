@@ -5,3 +5,7 @@
     height: 100vh;
     background-color: rgb(234, 239, 247);
 }
+
+.App {
+    display: flex;
+}

@@ -1,12 +1,13 @@
 import React, {useState} from "react";
-import AccItem from "./components/AccItem/AccItem";
+import AccItem from "./components/SideBar/AccItem/AccItem";
 import './styles/reset.css';
 import './styles/App.css';
 import avatar from './images/avatar.jpg'
-import AccList from "./components/AccList/AccList";
-import SettingsBtn from "./components/SettingsBtn/SettingsBtn";
+import AccList from "./components/SideBar/AccList/AccList";
+import SettingsBtn from "./components/SideBar/SettingsBtn/SettingsBtn";
 import ModalSettings from "./components/ModalSettings/ModalSettings";
 import { addAccount, getUserById } from './API/user';
+import DialogsHeader from "./components/Dialogs/DialogsHeader/DialogsHeader";
 
 function App() {
 
@@ -60,6 +61,15 @@ function App() {
             setJsonInput={setJsonInput}
             handleAddUser={handleAddUser}
         />
+        <div className="dialogs__column">
+            <DialogsHeader/>
+            <div className="dialogs__status">
+
+            </div>
+            <div className="dialogs__list">
+
+            </div>
+        </div>
     </div>
   );
 }
