@@ -8,6 +8,11 @@ import SettingsBtn from "./components/SideBar/SettingsBtn/SettingsBtn";
 import ModalSettings from "./components/ModalSettings/ModalSettings";
 import { addAccount, getUserById } from './API/user';
 import DialogsHeader from "./components/Dialogs/DialogsHeader/DialogsHeader";
+import {
+    ResizableHandle,
+    ResizablePanel,
+    ResizablePanelGroup,
+} from "./components/ui/resizable"
 
 function App() {
 
@@ -61,6 +66,11 @@ function App() {
             setJsonInput={setJsonInput}
             handleAddUser={handleAddUser}
         />
+        <ResizablePanelGroup direction="horizontal">
+            <ResizablePanel>One</ResizablePanel>
+            <ResizableHandle withHandle />
+            <ResizablePanel>Two</ResizablePanel>
+        </ResizablePanelGroup>
         <div className="dialogs__column">
             <DialogsHeader/>
             <div className="dialogs__status">

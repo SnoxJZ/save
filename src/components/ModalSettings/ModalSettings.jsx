@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './ModalSettings.css';
 import ModalSettingsHeader from "./ModalSettingsHeader";
-import Button from "../UI/Button/Button";
-import Input from "../UI/Input/Input";
+import Button from "../ui/Button/Button";
+import Input from "../ui/Input/Input";
 
 const ModalSettings = ({ active, setActive, children, account, jsonInput, setJsonInput, handleAddUser}) => {
     const [openTab, setOpenTab] = useState('accounts');
