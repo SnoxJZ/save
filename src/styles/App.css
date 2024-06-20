@@ -13,5 +13,16 @@
 .dialogs__column {
     display: flex;
     flex-direction: column;
-    width: 450px;
+    height: 100vh;
+}
+
+.head__wrapper {
+    flex: 0 0 auto;
+}
+
+.list__wrapper {
+    flex: 1 1 auto; /* растягивается на оставшуюся высоту */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }

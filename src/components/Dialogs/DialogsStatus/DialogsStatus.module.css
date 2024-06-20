@@ -1,0 +1,44 @@
+.dialogs__status {
+    overflow-y: hidden;
+    height: 50px;
+    background: #EAEFF7;
+}
+
+.status__wrapper {
+    display: flex;
+    width: 100%;
+    overflow: auto;
+    padding: 15px 0 15px 10px;
+}
+
+.status__text {
+    width: 100%;
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.status__elem {
+    filter: brightness(.7);
+    max-width: 150px;
+    display: flex;
+    padding: 3px 15px;
+    border-radius: 10px;
+    border: solid 1px transparent;
+    margin-right: 9px;
+    cursor: pointer;
+    user-select: none;
+    transition: ease .3s;
+}
+
+.active {
+    filter: brightness(1.2);
+    font-weight: 600;
+}
+
+.status__count {
+    font-size: 12px;
+    padding-left: 5px;
+    font-weight: 600;
+}

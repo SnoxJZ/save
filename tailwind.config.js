@@ -1,3 +1,5 @@
+const { blackA, mauve, violet } = require('@radix-ui/colors');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
@@ -17,6 +19,11 @@ module.exports = {
       },
     },
     extend: {
+      colors: {
+        ...blackA,
+        ...mauve,
+        ...violet,
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },

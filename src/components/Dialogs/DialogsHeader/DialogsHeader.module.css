@@ -1,7 +1,10 @@
 .dialogs__header {
-
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    padding: 7px 15px;
 }
 
 .unreaded {
-
+    
 }

@@ -13,6 +13,8 @@ import {
     ResizablePanel,
     ResizablePanelGroup,
 } from "./components/ui/resizable"
+import DialogsStatus from "./components/Dialogs/DialogsStatus/DialogsStatus";
+import DialogsList from "./components/Dialogs/DialogsList/DialogsList";
 
 function App() {
 
@@ -67,19 +69,21 @@ function App() {
             handleAddUser={handleAddUser}
         />
         <ResizablePanelGroup direction="horizontal">
-            <ResizablePanel>One</ResizablePanel>
-            <ResizableHandle withHandle />
-            <ResizablePanel>Two</ResizablePanel>
+            <ResizablePanel minSize={15} defaultSize={25}>
+                <div className="dialogs__column">
+                    <div className="head__wrapper">
+                        <DialogsHeader/>
+                        <DialogsStatus/>
+                    </div>
+                    <div className="list__wrapper">
+                        <DialogsList/>
+                    </div>
+                </div>
+            </ResizablePanel>
+            <ResizableHandle withHandle/>
+            <ResizablePanel minSize={65}>Two</ResizablePanel>
         </ResizablePanelGroup>
-        <div className="dialogs__column">
-            <DialogsHeader/>
-            <div className="dialogs__status">
 
-            </div>
-            <div className="dialogs__list">
-
-            </div>
-        </div>
     </div>
   );
 }
