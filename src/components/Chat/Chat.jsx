@@ -3,6 +3,7 @@ import './Chat.css';
 import ChatHeader from "./ChatHeader";
 import ChatMessages from "./ChatMessages";
 import ChatInput from "./ChatInput";
+import ChatTemplate from "./ChatTemplate";
 
 const Chat = ({ selectedChat }) => {
     const [messages, setMessages] = useState([]);
@@ -27,26 +28,21 @@ const Chat = ({ selectedChat }) => {
         }
     };
 
-    const handleKeyDown = (event) => {
-        if (event.key === 'Enter') {
-            handleSendMessage();
-        }
-    };
+
 
     return (
         <div className="chat__container">
             <ChatHeader selectedChat={selectedChat}/>
             <ChatMessages messages={messages}/>
             <div className="chat__input__container">
-                <div className="chat__templates">
-                    <button className="chat__template__button">Template 1</button>
-                    <button className="chat__template__button">Template 2</button>
-                    <button className="chat__template__button">Template 3</button>
+                <div style={{display: "flex", gap: "10px"}}>
+                    <ChatTemplate text={"Template 1"}/>
+                    <ChatTemplate text={"Template 2"}/>
+                    <ChatTemplate text={"Template 3"}/>
                 </div>
                 <ChatInput newMessage={newMessage}
                            setNewMessage={setNewMessage}
                            handleSendMessage={handleSendMessage}
-                           handleKeyDown={handleKeyDown}
                 />
             </div>
         </div>

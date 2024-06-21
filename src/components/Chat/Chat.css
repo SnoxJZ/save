@@ -82,3 +82,9 @@
     font-size: 26px;
     margin-right: 10px;
 }
+
+#send__button:hover {
+    background-color: #4d6375;
+    color: #fff;
+    transition: ease .3s;
+}
