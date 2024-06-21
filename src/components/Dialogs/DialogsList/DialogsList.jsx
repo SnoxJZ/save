@@ -1,15 +1,27 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import * as ScrollArea from "@radix-ui/react-scroll-area";
 import './DialogsList.css'
 import mockConversations from "./MokData"
 
-const TAGS = Array.from({ length: 50 }).map((_, i, a) => `v1.2.0-beta.${a.length - i}`);
-
-
 const DialogsList = () => {
+
+    const rootRef = useRef(null);
+
+    useEffect(() => {
+        if (rootRef.current) {
+            const divs = rootRef.current.querySelectorAll('div[style]');
+            divs.forEach(div => {
+                const styles = div.getAttribute('style');
+                if (styles.includes('display: table')) {
+                    div.setAttribute('style', styles.replace('display: table;', ''));
+                }
+            });
+        }
+    }, []);
+
     return (
         <div className="dialogs__list">
-            <ScrollArea.Root className="ScrollAreaRoot">
+            <ScrollArea.Root className="ScrollAreaRoot" ref={rootRef}>
                 <ScrollArea.Viewport className="ScrollAreaViewport">
                     <div style={{padding: '15px 20px'}}>
                         {mockConversations.map((conversation) => (
@@ -18,7 +30,16 @@ const DialogsList = () => {
                                 <div className="conversation__details">
                                     <div className="name__time">
                                         <span className="name">{conversation.name}</span>
-                                        <span className="time">{conversation.lastMessage.time}</span>
+                                        <div>
+                                            {conversation.lastMessage.sender === 'me' && conversation.status === 'read' && (
+                                                <span className="message__status__icon read">✓✓</span>
+                                            )}
+                                            {conversation.lastMessage.sender === 'me' && conversation.status === 'unread' && (
+                                                <span className="message__status__icon unread">✓</span>
+                                            )}
+                                            <span className="time">{conversation.lastMessage.time}</span>
+                                        </div>
+
                                     </div>
                                     <div className="message__status">
                                         <span className="message">{conversation.lastMessage.text}</span>
@@ -27,12 +48,7 @@ const DialogsList = () => {
                                                 {conversation.lastMessage.unreadCount}
                                             </span>
                                         )}
-                                        {conversation.lastMessage.sender === 'me' && conversation.status === 'read' && (
-                                            <span className="message__status__icon read">✓✓</span>
-                                        )}
-                                        {conversation.lastMessage.sender === 'me' && conversation.status === 'unread' && (
-                                            <span className="message__status__icon unread">✓</span>
-                                        )}
+
                                     </div>
                                 </div>
                             </div>
@@ -42,9 +58,7 @@ const DialogsList = () => {
                 <ScrollArea.Scrollbar className="ScrollAreaScrollbar" orientation="vertical">
                     <ScrollArea.Thumb className="ScrollAreaThumb"/>
                 </ScrollArea.Scrollbar>
-                <ScrollArea.Scrollbar className="ScrollAreaScrollbar" orientation="horizontal">
-                    <ScrollArea.Thumb className="ScrollAreaThumb"/>
-                </ScrollArea.Scrollbar>
+
                 <ScrollArea.Corner className="ScrollAreaCorner"/>
             </ScrollArea.Root>
         </div>

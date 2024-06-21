@@ -2,11 +2,11 @@ const mockConversations = [
     {
         id: 1,
         avatar: 'https://via.placeholder.com/50',
-        name: 'John Doe',
+        name: 'John',
         status: 'unread', // 'unread' | 'read'
         lastMessage: {
-            text: 'Hey, how are you?',
-            time: '10:45 AM',
+            text: 'Привет, как твои дела?',
+            time: '10:45',
             unreadCount: 3, // количество непрочитанных сообщений
             sender: 'them'
         },
@@ -14,11 +14,11 @@ const mockConversations = [
     {
         id: 2,
         avatar: 'https://via.placeholder.com/50',
-        name: 'Jane Smith',
+        name: 'Andrey',
         status: 'read',
         lastMessage: {
-            text: 'Let’s catch up later.',
-            time: '9:15 AM',
+            text: 'Давай встретимся позже',
+            time: '9:15',
             unreadCount: 0,
             sender: 'them'
         },
@@ -26,11 +26,11 @@ const mockConversations = [
     {
         id: 3,
         avatar: 'https://via.placeholder.com/50',
-        name: 'Alice Johnson',
+        name: 'Alice',
         status: 'read', // прочитанное сообщение
         lastMessage: {
-            text: 'I will be there at 5 PM.',
-            time: '8:30 AM',
+            text: 'Я буду на месте через 5 минут',
+            time: '8:30',
             unreadCount: 0,
             sender: 'me' // отправитель я
         },
@@ -38,11 +38,11 @@ const mockConversations = [
     {
         id: 4,
         avatar: 'https://via.placeholder.com/50',
-        name: 'Bob Brown',
+        name: 'Bob',
         status: 'unread', // непрочитанное сообщение
         lastMessage: {
-            text: 'Did you receive the documents?',
-            time: '7:45 AM',
+            text: 'Как проходит выполнение твоих новых задач?',
+            time: '7:45',
             unreadCount: 0,
             sender: 'me' // отправитель я
         },
@@ -50,11 +50,11 @@ const mockConversations = [
     {
         id: 5,
         avatar: 'https://via.placeholder.com/50',
-        name: 'John Doe',
+        name: 'John',
         status: 'unread', // 'unread' | 'read'
         lastMessage: {
-            text: 'Hey, how are you?',
-            time: '10:45 AM',
+            text: 'Привет, как твои дела?',
+            time: '10:45',
             unreadCount: 3, // количество непрочитанных сообщений
             sender: 'them'
         },
@@ -62,11 +62,11 @@ const mockConversations = [
     {
         id: 6,
         avatar: 'https://via.placeholder.com/50',
-        name: 'Jane Smith',
+        name: 'Andrey',
         status: 'read',
         lastMessage: {
-            text: 'Let’s catch up later.',
-            time: '9:15 AM',
+            text: 'Давай встретимся позже',
+            time: '9:15',
             unreadCount: 0,
             sender: 'them'
         },
@@ -74,11 +74,11 @@ const mockConversations = [
     {
         id: 7,
         avatar: 'https://via.placeholder.com/50',
-        name: 'Alice Johnson',
+        name: 'Alice',
         status: 'read', // прочитанное сообщение
         lastMessage: {
-            text: 'I will be there at 5 PM.',
-            time: '8:30 AM',
+            text: 'Я буду на месте через 5 минут',
+            time: '8:30',
             unreadCount: 0,
             sender: 'me' // отправитель я
         },
@@ -86,11 +86,11 @@ const mockConversations = [
     {
         id: 8,
         avatar: 'https://via.placeholder.com/50',
-        name: 'Bob Brown',
+        name: 'Bob',
         status: 'unread', // непрочитанное сообщение
         lastMessage: {
-            text: 'Did you receive the documents?',
-            time: '7:45 AM',
+            text: 'Как проходит выполнение твоих новых задач?',
+            time: '7:45',
             unreadCount: 0,
             sender: 'me' // отправитель я
         },
@@ -98,11 +98,11 @@ const mockConversations = [
     {
         id: 9,
         avatar: 'https://via.placeholder.com/50',
-        name: 'John Doe',
+        name: 'John',
         status: 'unread', // 'unread' | 'read'
         lastMessage: {
-            text: 'Hey, how are you?',
-            time: '10:45 AM',
+            text: 'Привет, как твои дела?',
+            time: '10:45',
             unreadCount: 3, // количество непрочитанных сообщений
             sender: 'them'
         },
@@ -110,11 +110,11 @@ const mockConversations = [
     {
         id: 10,
         avatar: 'https://via.placeholder.com/50',
-        name: 'Jane Smith',
+        name: 'Andrey',
         status: 'read',
         lastMessage: {
-            text: 'Let’s catch up later.',
-            time: '9:15 AM',
+            text: 'Давай встретимся позже',
+            time: '9:15',
             unreadCount: 0,
             sender: 'them'
         },
@@ -122,11 +122,11 @@ const mockConversations = [
     {
         id: 11,
         avatar: 'https://via.placeholder.com/50',
-        name: 'Alice Johnson',
+        name: 'Alice',
         status: 'read', // прочитанное сообщение
         lastMessage: {
-            text: 'I will be there at 5 PM.',
-            time: '8:30 AM',
+            text: 'Я буду на месте через 5 минут',
+            time: '8:30',
             unreadCount: 0,
             sender: 'me' // отправитель я
         },
@@ -134,11 +134,11 @@ const mockConversations = [
     {
         id: 12,
         avatar: 'https://via.placeholder.com/50',
-        name: 'Bob Brown',
+        name: 'Bob',
         status: 'unread', // непрочитанное сообщение
         lastMessage: {
-            text: 'Did you receive the documents?',
-            time: '7:45 AM',
+            text: 'Как проходит выполнение твоих новых задач?',
+            time: '7:45',
             unreadCount: 0,
             sender: 'me' // отправитель я
         },
@@ -146,11 +146,11 @@ const mockConversations = [
     {
         id: 13,
         avatar: 'https://via.placeholder.com/50',
-        name: 'John Doe',
+        name: 'John',
         status: 'unread', // 'unread' | 'read'
         lastMessage: {
-            text: 'Hey, how are you?',
-            time: '10:45 AM',
+            text: 'Привет, как твои дела?',
+            time: '10:45',
             unreadCount: 3, // количество непрочитанных сообщений
             sender: 'them'
         },
@@ -158,11 +158,11 @@ const mockConversations = [
     {
         id: 14,
         avatar: 'https://via.placeholder.com/50',
-        name: 'Jane Smith',
+        name: 'Andrey',
         status: 'read',
         lastMessage: {
-            text: 'Let’s catch up later.',
-            time: '9:15 AM',
+            text: 'Давай встретимся позже',
+            time: '9:15',
             unreadCount: 0,
             sender: 'them'
         },
@@ -170,11 +170,11 @@ const mockConversations = [
     {
         id: 15,
         avatar: 'https://via.placeholder.com/50',
-        name: 'Alice Johnson',
+        name: 'Alice',
         status: 'read', // прочитанное сообщение
         lastMessage: {
-            text: 'I will be there at 5 PM.',
-            time: '8:30 AM',
+            text: 'Я буду на месте через 5 минут',
+            time: '8:30',
             unreadCount: 0,
             sender: 'me' // отправитель я
         },
@@ -182,11 +182,11 @@ const mockConversations = [
     {
         id: 16,
         avatar: 'https://via.placeholder.com/50',
-        name: 'Bob Brown',
+        name: 'Bob',
         status: 'unread', // непрочитанное сообщение
         lastMessage: {
-            text: 'Did you receive the documents?',
-            time: '7:45 AM',
+            text: 'Как проходит выполнение твоих новых задач?',
+            time: '7:45',
             unreadCount: 0,
             sender: 'me' // отправитель я
         },

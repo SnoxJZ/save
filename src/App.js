@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import AccItem from "./components/SideBar/AccItem/AccItem";
 import './styles/reset.css';
 import './styles/App.css';
 import avatar from './images/avatar.jpg'
@@ -15,6 +14,7 @@ import {
 } from "./components/ui/resizable"
 import DialogsStatus from "./components/Dialogs/DialogsStatus/DialogsStatus";
 import DialogsList from "./components/Dialogs/DialogsList/DialogsList";
+import Chat from "./components/Chat/Chat";
 
 function App() {
 
@@ -69,7 +69,7 @@ function App() {
             handleAddUser={handleAddUser}
         />
         <ResizablePanelGroup direction="horizontal">
-            <ResizablePanel minSize={15} defaultSize={25}>
+            <ResizablePanel minSize={20} defaultSize={25}>
                 <div className="dialogs__column">
                     <div className="head__wrapper">
                         <DialogsHeader/>
@@ -81,7 +81,9 @@ function App() {
                 </div>
             </ResizablePanel>
             <ResizableHandle withHandle/>
-            <ResizablePanel minSize={65}>Two</ResizablePanel>
+            <ResizablePanel minSize={75}>
+                <Chat/>
+            </ResizablePanel>
         </ResizablePanelGroup>
 
     </div>
