@@ -1,10 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Chat.css';
-import Input from "../ui/Input/Input";
-import Button from "../ui/Button/Button";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ChatHeader from "./ChatHeader";
-import ChatMessage from "./ChatMessage";
 import ChatMessages from "./ChatMessages";
 import ChatInput from "./ChatInput";
 
@@ -17,8 +13,6 @@ const Chat = ({ selectedChat }) => {
             setMessages(selectedChat.messages || []);
         }
     }, [selectedChat]);
-
-
 
     const handleSendMessage = () => {
         if (newMessage.trim() !== '') {

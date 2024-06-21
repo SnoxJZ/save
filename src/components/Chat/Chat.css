@@ -9,6 +9,8 @@
     padding: 10px 25px;
     font-weight: bold;
     border-bottom: 1px solid #ddd;
+    display: flex;
+    align-items: center;
 }
 
 .chat__messages {

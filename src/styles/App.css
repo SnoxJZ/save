@@ -16,6 +16,7 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
+    border-right: solid 1px #888888;
 }
 
 .head__wrapper {
@@ -23,7 +24,7 @@
 }
 
 .list__wrapper {
-    flex: 1 1 auto; /* растягивается на оставшуюся высоту */
+    flex: 1 1 auto;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -31,22 +32,22 @@
 
 
 
-.dialogs__container {
-    flex: 1;
-    border-right: 1px solid #ddd;
-}
+/*.dialogs__container {*/
+/*    flex: 1;*/
+/*    border-right: 1px solid #ddd;*/
+/*}*/
 
-.chat__container {
-    flex: 2;
-    display: flex;
-    flex-direction: column;
-}
+/*.chat__container {*/
+/*    flex: 2;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*}*/
 
-.chat__placeholder {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 1;
-    font-size: 18px;
-    color: #888;
-}
+/*.chat__placeholder {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    flex: 1;*/
+/*    font-size: 18px;*/
+/*    color: #888;*/
+/*}*/
