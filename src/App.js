@@ -8,13 +8,17 @@ import ModalSettings from "./components/ModalSettings/ModalSettings";
 import { addAccount, getUserById } from './API/user';
 import DialogsHeader from "./components/Dialogs/DialogsHeader/DialogsHeader";
 import {
-    ResizableHandle,
+    // ResizableHandle,
     ResizablePanel,
     ResizablePanelGroup,
 } from "./components/ui/resizable"
 import DialogsStatus from "./components/Dialogs/DialogsStatus/DialogsStatus";
 import DialogsList from "./components/Dialogs/DialogsList/DialogsList";
 import Chat from "./components/Chat/Chat";
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { far } from '@fortawesome/free-regular-svg-icons'
 
 function App() {
 
@@ -42,6 +46,17 @@ function App() {
     const [jsonInput, setJsonInput] = useState('');
     const [modalActive, setModalActive] = useState(false);
     const [error, setError] = useState('');
+    const [selectedChat, setSelectedChat] = useState({
+        name: 'Диалог 1',
+        messages: [
+            { text: 'Привет, как дела?', sender: 'them', time: '15:00', status: 'read' },
+            { text: 'Все хорошо, а у тебя?', sender: 'me', time: '15:05', status: 'unread' },
+        ],
+    });
+
+    const handleSelectChat = (chat) => {
+        setSelectedChat(chat);
+    };
 
     const handleAddUser = async () => {
         try {
@@ -76,13 +91,12 @@ function App() {
                         <DialogsStatus/>
                     </div>
                     <div className="list__wrapper">
-                        <DialogsList/>
+                        <DialogsList onSelectChat={handleSelectChat}/>
                     </div>
                 </div>
             </ResizablePanel>
-            <ResizableHandle withHandle/>
             <ResizablePanel minSize={75}>
-                <Chat/>
+                {selectedChat ? <Chat selectedChat={selectedChat} /> : <div className="chat__placeholder">Пожалуйста, выберите диалог</div>}
             </ResizablePanel>
         </ResizablePanelGroup>
 
@@ -91,3 +105,4 @@ function App() {
 }
 
 export default App;
+library.add(fab, fas, far)

@@ -3,7 +3,7 @@ import * as ScrollArea from "@radix-ui/react-scroll-area";
 import './DialogsList.css'
 import mockConversations from "./MokData"
 
-const DialogsList = () => {
+const DialogsList = ({onSelectChat}) => {
 
     const rootRef = useRef(null);
 
@@ -23,9 +23,9 @@ const DialogsList = () => {
         <div className="dialogs__list">
             <ScrollArea.Root className="ScrollAreaRoot" ref={rootRef}>
                 <ScrollArea.Viewport className="ScrollAreaViewport">
-                    <div style={{padding: '15px 20px'}}>
+                    <div style={{padding: '15px 0 15px 20px'}}>
                         {mockConversations.map((conversation) => (
-                            <div className="conversation" key={conversation.id}>
+                            <div className="conversation" key={conversation.id} onClick={() => onSelectChat(conversation)}>
                                 <img src={conversation.avatar} alt="avatar" className="avatar"/>
                                 <div className="conversation__details">
                                     <div className="name__time">

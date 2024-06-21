@@ -8,6 +8,8 @@
 
 .App {
     display: flex;
+    height: 100vh;
+    width: 100%;
 }
 
 .dialogs__column {
@@ -25,4 +27,26 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
+}
+
+
+
+.dialogs__container {
+    flex: 1;
+    border-right: 1px solid #ddd;
+}
+
+.chat__container {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat__placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    font-size: 18px;
+    color: #888;
 }
