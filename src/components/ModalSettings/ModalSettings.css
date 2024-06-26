@@ -93,12 +93,12 @@
     padding: 10px 0;
 }
 
-.acc__desc h1{
+h1{
     font-weight: 600;
     font-size: 15px;
 }
 
-.acc__desc p, .proxy__details p{
+p{
     font-size: 14px;
     color: dimgray;
 }
@@ -110,4 +110,39 @@
     margin-top: 10px;
     background-color: rgb(234, 239, 247);
     border-radius: 12px;
+}
+
+
+
+.template__item {
+    display: flex;
+    border-bottom: solid 1px rgb(234, 239, 247);
+    padding: 10px 0;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.template__info {
+    width: 70%;
+}
+
+.template__body {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#template__remove {
+    margin-right: 10px;
+}
+
+#template__edit:hover, #template__remove:hover {
+    background-color: #4d6375;
+    color: #fff;
+    transition: ease .3s;
+}
+
+.templates__add {
+    display: flex;
+    flex-direction: column;
 }

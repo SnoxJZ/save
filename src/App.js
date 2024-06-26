@@ -43,6 +43,13 @@ function App() {
         {id: "@18", avatar: avatar, name: "Name17 Surname17", messages: 0}
     ]);
 
+    const [templates, setTemplates] = useState([
+        {id: 1, title: "Template 1", body: "Vivamus imperdiet gravida ipsum tincidunt semper. Vivamus."},
+        {id: 2, title: "Template 2", body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ut sollicitudin nisi, ut condimentum sem. Suspendisse."},
+        {id: 3, title: "Template 3", body: "Mauris et semper nisl, a tristique justo. Donec aliquet metus metus, in aliquet lorem blandit a. Lorem ipsum dolor sit amet, consectetur adipiscing elit."},
+
+    ])
+
     const [jsonInput, setJsonInput] = useState('');
     const [modalActive, setModalActive] = useState(false);
     const [error, setError] = useState('');
@@ -82,6 +89,7 @@ function App() {
             jsonInput={jsonInput}
             setJsonInput={setJsonInput}
             handleAddUser={handleAddUser}
+            templates={templates}
         />
         <ResizablePanelGroup direction="horizontal">
             <ResizablePanel minSize={20} defaultSize={25}>

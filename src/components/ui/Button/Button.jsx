@@ -1,9 +1,18 @@
 import React from 'react';
-import classes from './Button.module.css'
+import classes from './Button.module.css';
 
-const Button = ({children, ...props}) => {
+const Button = ({ children, onClick, preventDefault = false, ...props }) => {
+    const handleClick = (e) => {
+        if (preventDefault) {
+            e.preventDefault();
+        }
+        if (onClick) {
+            onClick(e);
+        }
+    };
+
     return (
-        <button {...props} className={classes.myBtn}>
+        <button {...props} className={classes.myBtn} onClick={handleClick}>
             {children}
         </button>
     );

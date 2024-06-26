@@ -3,7 +3,14 @@ import './Chat.css';
 import ChatHeader from "./ChatHeader";
 import ChatMessages from "./ChatMessages";
 import ChatInput from "./ChatInput";
-import ChatTemplate from "./ChatTemplate";
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from "../ui/dropdown-menu"
 
 const Chat = ({ selectedChat }) => {
     const [messages, setMessages] = useState([]);
@@ -35,10 +42,18 @@ const Chat = ({ selectedChat }) => {
             <ChatHeader selectedChat={selectedChat}/>
             <ChatMessages messages={messages}/>
             <div className="chat__input__container">
-                <div style={{display: "flex", gap: "10px"}}>
-                    <ChatTemplate text={"Template 1"}/>
-                    <ChatTemplate text={"Template 2"}/>
-                    <ChatTemplate text={"Template 3"}/>
+                <div style={{marginLeft: "20px"}}>
+                    <DropdownMenu>
+                        <DropdownMenuTrigger>Open</DropdownMenuTrigger>
+                        <DropdownMenuContent className="w-56">
+                            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem>Profile Profile Profile Profile Profile Profile </DropdownMenuItem>
+                            <DropdownMenuItem>Billing</DropdownMenuItem>
+                            <DropdownMenuItem>Team</DropdownMenuItem>
+                            <DropdownMenuItem>Subscription</DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
                 </div>
                 <ChatInput newMessage={newMessage}
                            setNewMessage={setNewMessage}
