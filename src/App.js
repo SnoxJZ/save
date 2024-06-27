@@ -50,6 +50,13 @@ function App() {
 
     ])
 
+    const [statuses, setStatuses] = useState([
+        {id: "1", color: "yellow", children: "Создан новый статус", count: 7},
+        {id: "2", color: "red", children: "В обработке", count: 10},
+        {id: "3", color: "green", children: "Второй сорт", count: 0},
+        {id: "4", color: "purple", children: "??", count: 2},
+    ])
+
     const [jsonInput, setJsonInput] = useState('');
     const [modalActive, setModalActive] = useState(false);
     const [error, setError] = useState('');
@@ -90,13 +97,14 @@ function App() {
             setJsonInput={setJsonInput}
             handleAddUser={handleAddUser}
             templates={templates}
+            statuses={statuses}
         />
         <ResizablePanelGroup direction="horizontal">
             <ResizablePanel minSize={20} defaultSize={25}>
                 <div className="dialogs__column">
                     <div className="head__wrapper">
                         <DialogsHeader/>
-                        <DialogsStatus/>
+                        <DialogsStatus statuses={statuses}/>
                     </div>
                     <div className="list__wrapper">
                         <DialogsList onSelectChat={handleSelectChat}/>
@@ -104,7 +112,7 @@ function App() {
                 </div>
             </ResizablePanel>
             <ResizablePanel minSize={75}>
-                {selectedChat ? <Chat selectedChat={selectedChat} /> : <div className="chat__placeholder">Пожалуйста, выберите диалог</div>}
+                {selectedChat ? <Chat selectedChat={selectedChat} templates={templates} statuses={statuses}/> : <div className="chat__placeholder">Пожалуйста, выберите диалог</div>}
             </ResizablePanel>
         </ResizablePanelGroup>
 

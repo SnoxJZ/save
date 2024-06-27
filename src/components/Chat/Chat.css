@@ -88,3 +88,15 @@
     color: #fff;
     transition: ease .3s;
 }
+
+
+.chat__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dialog__info {
+    display: flex;
+    align-items: center;
+}

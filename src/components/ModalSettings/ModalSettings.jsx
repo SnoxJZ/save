@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import './ModalSettings.css';
 import ModalSettingsHeader from "./ModalSettingsHeader";
-import Button from "../ui/Button/Button";
-import Input from "../ui/Input/Input";
 import ModalSettingsAccounts from "./ModalSettingsAccounts";
 import ModalSettingsTemplates from "./ModalSettingsTemplates";
+import ModalSettingsStatuses from "./ModalSettingsStatuses";
 
-const ModalSettings = ({ active, setActive, children, account, jsonInput, setJsonInput, handleAddUser, templates}) => {
+const ModalSettings = ({ active, setActive, children, account, jsonInput, setJsonInput, handleAddUser, templates, statuses}) => {
     const [openTab, setOpenTab] = useState('accounts');
 
     return (
@@ -23,6 +22,9 @@ const ModalSettings = ({ active, setActive, children, account, jsonInput, setJso
                 )}
                 {openTab === 'templates' && (
                     <ModalSettingsTemplates templates={templates}/>
+                )}
+                {openTab === 'statuses' && (
+                    <ModalSettingsStatuses statuses={statuses}/>
                 )}
             </div>
         </div>

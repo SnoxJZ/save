@@ -41,7 +41,7 @@ const mockConversations = [
         name: 'Bob',
         status: 'unread', // непрочитанное сообщение
         lastMessage: {
-            text: 'Как проходит выполнение твоих новых задач?',
+            text: 'Как проходит выполнение твоих новых задач?  Времени осталось совсем немного',
             time: '7:45',
             unreadCount: 0,
             sender: 'me' // отправитель я

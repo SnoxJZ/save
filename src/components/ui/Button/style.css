@@ -1,0 +1,9 @@
+#editBtn:hover, #removeBtn:hover {
+    background-color: #4d6375;
+    color: #fff;
+    transition: ease .3s;
+}
+
+#removeBtn {
+    margin-right: 10px;
+}

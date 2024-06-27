@@ -3,18 +3,18 @@ import './Chat.css';
 import ChatHeader from "./ChatHeader";
 import ChatMessages from "./ChatMessages";
 import ChatInput from "./ChatInput";
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-} from "../ui/dropdown-menu"
+import {Button, Dropdown} from "antd";
 
-const Chat = ({ selectedChat }) => {
+const Chat = ({ selectedChat, templates, statuses }) => {
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState('');
+
+    const items = templates.map(item => ({
+        key: item.id,
+        label: (
+            <h1 className="template__title" style={{fontSize: "14px"}}>{item.title}</h1>
+        ),
+    }));
 
     useEffect(() => {
         if (selectedChat) {
@@ -35,29 +35,24 @@ const Chat = ({ selectedChat }) => {
         }
     };
 
-
-
     return (
         <div className="chat__container">
-            <ChatHeader selectedChat={selectedChat}/>
+            <ChatHeader selectedChat={selectedChat} statuses={statuses}/>
             <ChatMessages messages={messages}/>
             <div className="chat__input__container">
-                <div style={{marginLeft: "20px"}}>
-                    <DropdownMenu>
-                        <DropdownMenuTrigger>Open</DropdownMenuTrigger>
-                        <DropdownMenuContent className="w-56">
-                            <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                            <DropdownMenuSeparator />
-                            <DropdownMenuItem>Profile Profile Profile Profile Profile Profile </DropdownMenuItem>
-                            <DropdownMenuItem>Billing</DropdownMenuItem>
-                            <DropdownMenuItem>Team</DropdownMenuItem>
-                            <DropdownMenuItem>Subscription</DropdownMenuItem>
-                        </DropdownMenuContent>
-                    </DropdownMenu>
+                <div>
+                    <Dropdown
+                        menu={{ items }}
+                        placement="topLeft"
+                        arrow
+                    >
+                        <Button>Шаблоны</Button>
+                    </Dropdown>
                 </div>
-                <ChatInput newMessage={newMessage}
-                           setNewMessage={setNewMessage}
-                           handleSendMessage={handleSendMessage}
+                <ChatInput
+                    newMessage={newMessage}
+                    setNewMessage={setNewMessage}
+                    handleSendMessage={handleSendMessage}
                 />
             </div>
         </div>

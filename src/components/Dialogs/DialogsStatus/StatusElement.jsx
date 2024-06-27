@@ -9,13 +9,9 @@ const StatusElement = ({color, children, count}) => {
         setIsActive(!isActive);
     //     функция фильтрации
     }
-    
-    const style = {
-        backgroundColor: color,
-    }
 
     return (
-        <div className={`${classes.status__elem} ${isActive ? classes.active : ''}`} style={style} onClick={handleClick}>
+        <div className={`${classes.status__elem} ${isActive ? classes.active : ''}`} style={{backgroundColor: color}} onClick={handleClick}>
             <span className={classes.status__text}>{children}</span>
             <span className={classes.status__count}>{count}</span>
         </div>
