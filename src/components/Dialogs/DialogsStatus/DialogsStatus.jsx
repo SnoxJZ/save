@@ -8,7 +8,7 @@ const DialogsStatus = ({statuses}) => {
         <div className={classes.dialogs__status}>
             <div className={classes.status__wrapper}>
                 {statuses.map(item => (
-                        <StatusElement color={item.color} children={item.children} count={item.count}/>
+                        <StatusElement color={item.color} children={item.children} count={item.count} key={item.id}/>
                     )
                 )}
             </div>

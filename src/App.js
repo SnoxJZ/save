@@ -5,7 +5,7 @@ import avatar from './images/avatar.jpg'
 import AccList from "./components/SideBar/AccList/AccList";
 import SettingsBtn from "./components/SideBar/SettingsBtn/SettingsBtn";
 import ModalSettings from "./components/ModalSettings/ModalSettings";
-import { addAccount, getUserById } from './API/user';
+import {addAccount, getUserById, useService} from './API/useService';
 import DialogsHeader from "./components/Dialogs/DialogsHeader/DialogsHeader";
 import {
     // ResizableHandle,
@@ -19,6 +19,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { far } from '@fortawesome/free-regular-svg-icons'
+import {AuthProvider} from "./context/AuthContext";
 
 function App() {
 
@@ -72,6 +73,7 @@ function App() {
         setSelectedChat(chat);
     };
 
+    const { addAccount } = useService();
     const handleAddUser = async () => {
         try {
             const accObject = JSON.parse(jsonInput);
@@ -84,39 +86,46 @@ function App() {
     };
 
   return (
-    <div className="App">
-        <div className={"sidebar"}>
-            <AccList account={account}/>
-            <SettingsBtn setActive={setModalActive}/>
-        </div>
-        <ModalSettings
-            active={modalActive}
-            setActive={setModalActive}
-            account={account}
-            jsonInput={jsonInput}
-            setJsonInput={setJsonInput}
-            handleAddUser={handleAddUser}
-            templates={templates}
-            statuses={statuses}
-        />
-        <ResizablePanelGroup direction="horizontal">
-            <ResizablePanel minSize={20} defaultSize={25}>
-                <div className="dialogs__column">
-                    <div className="head__wrapper">
-                        <DialogsHeader/>
-                        <DialogsStatus statuses={statuses}/>
-                    </div>
-                    <div className="list__wrapper">
-                        <DialogsList onSelectChat={handleSelectChat}/>
-                    </div>
-                </div>
-            </ResizablePanel>
-            <ResizablePanel minSize={75}>
-                {selectedChat ? <Chat selectedChat={selectedChat} templates={templates} statuses={statuses}/> : <div className="chat__placeholder">Пожалуйста, выберите диалог</div>}
-            </ResizablePanel>
-        </ResizablePanelGroup>
-
-    </div>
+      <AuthProvider>
+          <div className="App">
+              <div className={"sidebar"}>
+                  <AccList account={account}/>
+                  <SettingsBtn setActive={setModalActive}/>
+              </div>
+              <ModalSettings
+                  active={modalActive}
+                  setActive={setModalActive}
+                  account={account}
+                  jsonInput={jsonInput}
+                  setJsonInput={setJsonInput}
+                  handleAddUser={handleAddUser}
+                  // templates={templates}
+                  statuses={statuses}
+              />
+              <ResizablePanelGroup direction="horizontal">
+                  <ResizablePanel minSize={20} defaultSize={25}>
+                      <div className="dialogs__column">
+                          <div className="head__wrapper">
+                              <DialogsHeader/>
+                              <DialogsStatus statuses={statuses}/>
+                          </div>
+                          <div className="list__wrapper">
+                              <DialogsList onSelectChat={handleSelectChat}/>
+                          </div>
+                      </div>
+                  </ResizablePanel>
+                  <ResizablePanel minSize={75}>
+                      {selectedChat
+                          ? <Chat
+                              selectedChat={selectedChat}
+                              templates={templates}
+                              statuses={statuses}
+                          />
+                          : <div className="chat__placeholder">Пожалуйста, выберите диалог</div>}
+                  </ResizablePanel>
+              </ResizablePanelGroup>
+          </div>
+      </AuthProvider>
   );
 }
 

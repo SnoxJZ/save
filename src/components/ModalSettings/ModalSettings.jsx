@@ -5,7 +5,7 @@ import ModalSettingsAccounts from "./ModalSettingsAccounts";
 import ModalSettingsTemplates from "./ModalSettingsTemplates";
 import ModalSettingsStatuses from "./ModalSettingsStatuses";
 
-const ModalSettings = ({ active, setActive, children, account, jsonInput, setJsonInput, handleAddUser, templates, statuses}) => {
+const ModalSettings = ({ active, setActive, account, jsonInput, setJsonInput, handleAddUser, statuses}) => {
     const [openTab, setOpenTab] = useState('accounts');
 
     return (
@@ -21,7 +21,7 @@ const ModalSettings = ({ active, setActive, children, account, jsonInput, setJso
                     />
                 )}
                 {openTab === 'templates' && (
-                    <ModalSettingsTemplates templates={templates}/>
+                    <ModalSettingsTemplates />
                 )}
                 {openTab === 'statuses' && (
                     <ModalSettingsStatuses statuses={statuses}/>

@@ -13,7 +13,10 @@ const ChatHeader = ({selectedChat, statuses}) => {
     const items = statuses.map(item => ({
         key: item.id,
         label: (
-            <StatusElement color={item.color} children={item.children}/>
+            <div style={{display: "flex", alignItems: "center"}}>
+                <span style={{width: "20px", height: "20px", borderRadius: "50%", backgroundColor: item.color}}></span>
+                <StatusElement children={item.children}/>
+            </div>
         ),
     }));
 
