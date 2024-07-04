@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { useAuth } from './context/AuthContext';
-import 'styles/login.css'
+import { useAuth } from '../context/AuthContext';
+import '../styles/login.css'
+import {useNavigate} from "react-router-dom";
 
 const Login = () => {
 
@@ -8,11 +9,13 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const { login } = useAuth();
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             await login(username, password);
+            navigate('/app');
         } catch (err) {
             setError(err.message);
         }

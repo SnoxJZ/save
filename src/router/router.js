@@ -1,23 +1,11 @@
 import React from 'react';
 import {useAuth} from "../context/AuthContext";
-import {Route, Navigate} from 'react-router-dom';
-import Loader from "../components/ui/Loader";
+import {Navigate, Outlet} from 'react-router-dom';
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
+const PrivateRoute = () => {
     const { token } = useAuth();
 
-    return (
-        <Route
-            {...rest}
-            render={props =>
-                token ? (
-                    <Component {...props} />
-                ) : (
-                    <Route path="/*" element={<Navigate to="/login" replace />} />
-                )
-            }
-        />
-    );
+    return token ? <Outlet /> : <Navigate to="/login" />;
 };
 
 export default PrivateRoute;
