@@ -37,6 +37,22 @@ export const AuthProvider = ({ children }) => {
         setToken('');
     };
 
+    useEffect(() => {
+        const responseInterceptor = axios.interceptors.response.use(
+            (response) => response,
+            (error) => {
+                if (error.response && error.response.status === 401) {
+                    logout();
+                }
+                return Promise.reject(error);
+            }
+        );
+
+        return () => {
+            axios.interceptors.response.eject(responseInterceptor);
+        };
+    }, []);
+
     return (
         <AuthContext.Provider value={{ token, login, logout }}>
             {children}

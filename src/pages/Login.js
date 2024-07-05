@@ -22,35 +22,38 @@ const Login = () => {
     };
 
     return (
-        <div id="login">
-            <h1>
-                <strong>Welcome.</strong> Please login.
-            </h1>
-            <form onSubmit={handleSubmit}>
-                <fieldset>
-                    <p>
-                        <input
-                            type="text"
-                            placeholder="Username"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                        />
-                    </p>
-                    <p>
-                        <input
-                            type="password"
-                            placeholder="Password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                    </p>
-                    <p>
-                        <input type="submit" defaultValue="Login"/>
-                    </p>
-                </fieldset>
-            </form>
-            {error && <p>{error}</p>}
+        <div className="login__wrapper">
+            <div id="login">
+                <h1 className="login__header">
+                    <strong>Welcome.</strong> Please login.
+                </h1>
+                <form onSubmit={handleSubmit}>
+                    <fieldset>
+                        <p>
+                            <input
+                                type="text"
+                                placeholder="Username"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                            />
+                        </p>
+                        <p>
+                            <input
+                                type="password"
+                                placeholder="Password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                        </p>
+                        <p>
+                            <input type="submit" defaultValue="Login"/>
+                        </p>
+                    </fieldset>
+                </form>
+                {error && <p>{error}</p>}
+            </div>
         </div>
+
     );
 };
 

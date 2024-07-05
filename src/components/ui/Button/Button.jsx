@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './Button.module.css';
 
-const Button = ({ children, onClick, preventDefault = false, ...props }) => {
+const Button = ({ children, onClick, preventDefault, ...props }) => {
     const handleClick = (e) => {
         if (preventDefault) {
             e.preventDefault();

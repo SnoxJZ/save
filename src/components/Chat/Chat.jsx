@@ -3,18 +3,11 @@ import './Chat.css';
 import ChatHeader from "./ChatHeader";
 import ChatMessages from "./ChatMessages";
 import ChatInput from "./ChatInput";
-import {Button, Dropdown} from "antd";
+import ChatTemplate from "./ChatTemplate";
 
-const Chat = ({ selectedChat, templates, statuses }) => {
+const Chat = ({ selectedChat, statuses }) => {
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState('');
-
-    const items = templates.map(item => ({
-        key: item.id,
-        label: (
-            <h1 className="template__title" style={{fontSize: "14px"}}>{item.title}</h1>
-        ),
-    }));
 
     useEffect(() => {
         if (selectedChat) {
@@ -40,15 +33,9 @@ const Chat = ({ selectedChat, templates, statuses }) => {
             <ChatHeader selectedChat={selectedChat} statuses={statuses}/>
             <ChatMessages messages={messages}/>
             <div className="chat__input__container">
-                <div>
-                    <Dropdown
-                        menu={{ items }}
-                        placement="topLeft"
-                        arrow
-                    >
-                        <Button>Шаблоны</Button>
-                    </Dropdown>
-                </div>
+
+                <ChatTemplate setNewMessage={setNewMessage}/>
+
                 <ChatInput
                     newMessage={newMessage}
                     setNewMessage={setNewMessage}

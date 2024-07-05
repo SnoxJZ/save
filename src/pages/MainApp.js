@@ -5,7 +5,7 @@ import avatar from '../images/avatar.jpg'
 import AccList from "../components/SideBar/AccList/AccList";
 import SettingsBtn from "../components/SideBar/SettingsBtn/SettingsBtn";
 import ModalSettings from "../components/ModalSettings/ModalSettings";
-import {addAccount, getUserById, useService} from '../API/useService';
+import {addAccount, getUserById, useTemplateService} from '../API/useTemplateService';
 import DialogsHeader from "../components/Dialogs/DialogsHeader/DialogsHeader";
 import {
     // ResizableHandle,
@@ -19,7 +19,6 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { far } from '@fortawesome/free-regular-svg-icons'
-import {AuthProvider} from "../context/AuthContext";
 
 function MainApp() {
 
@@ -73,7 +72,7 @@ function MainApp() {
         setSelectedChat(chat);
     };
 
-    const { addAccount } = useService();
+    const { addAccount } = useTemplateService();
     const handleAddUser = async () => {
         try {
             const accObject = JSON.parse(jsonInput);

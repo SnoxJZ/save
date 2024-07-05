@@ -119,6 +119,10 @@ p{
 
 
 
+.templates__list {
+    margin: 0 auto;
+}
+
 .template__info {
     width: 70%;
 }
@@ -146,9 +150,33 @@ p{
 
 
 
+.status__head {
+    margin: 10px 0 0 10px;
+    display: flex;
+    justify-content: space-between;
+    width: 97%;
+}
+
 .statuses__color {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 10px;
+}
+
+.status__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.status_col, .status__text {
+    width: 33%;
+    margin-left: 10px;
+}
+
+.status__cou {
+    color: #000000;
+    font-weight: 600;
 }

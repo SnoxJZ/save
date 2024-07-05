@@ -3,6 +3,8 @@
     align-items: center;
     justify-content: center;
     padding: 15px 10px;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .settings {

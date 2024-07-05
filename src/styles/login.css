@@ -1,54 +1,19 @@
-@use postcss-preset-env;
-
-/* ---------- FONTAWESOME ---------- */
-/* ---------- https://fortawesome.github.com/Font-Awesome/ ---------- */
-/* ---------- http://weloveiconfonts.com/ ---------- */
-
-@import url(https://weloveiconfonts.com/api/?family=fontawesome);
-
-/* ---------- ERIC MEYER'S RESET CSS ---------- */
-/* ---------- https://meyerweb.com/eric/tools/css/reset/ ---------- */
-
-@import url(https://meyerweb.com/eric/tools/css/reset/reset.css);
-
-/* ---------- FONTAWESOME ---------- */
-
-[class*="fontawesome-"]:before {
-    font-family: 'FontAwesome', sans-serif;
+.login__wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
-
-/* ---------- GENERAL ---------- */
-
-body {
-    background: #f4f4f4;
-    color: #5a5656;
-    display: grid;
-    font-family: 'Open Sans', sans-serif;
-    line-height: 1.5;
-    margin: 0;
-    min-height: 100vh;
-    place-items: center;
-}
-
-a { text-decoration: none; }
-
-h1 { font-size: 1em; }
-
-h1, p {
-    margin-bottom: 10px;
-}
-
-strong {
-    font-weight: bold;
-}
-
-.uppercase { text-transform: uppercase; }
-
-/* ---------- LOGIN ---------- */
 
 #login {
-    margin: 50px auto;
+    margin: 0 auto;
     width: 300px;
+
+}
+
+.login__header {
+    text-align: center;
+    margin-bottom: 10px;
 }
 
 form fieldset input[type="text"],
@@ -62,8 +27,9 @@ input[type="password"] {
     font-size: 14px;
     height: 50px;
     outline: none;
-    padding: 0px 10px;
-    width: 280px;
+    padding: 0 10px;
+    width: 300px;
+    margin-bottom: 15px;
 }
 
 form fieldset input[type="submit"] {
@@ -86,16 +52,3 @@ form fieldset a {
 
 form fieldset a:hover { text-decoration: underline; }
 
-.btn-round {
-    background: #5a5656;
-    border-radius: 50%;
-    color: #f4f4f4;
-    display: block;
-    font-size: 12px;
-    height: 50px;
-    line-height: 50px;
-    margin: 30px 125px;
-    text-align: center;
-    text-transform: uppercase;
-    width: 50px;
-}
