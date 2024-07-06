@@ -1,11 +1,9 @@
 import React, {useState} from "react";
 import '../styles/reset.css';
 import '../styles/App.css';
-import avatar from '../images/avatar.jpg'
 import AccList from "../components/SideBar/AccList/AccList";
 import SettingsBtn from "../components/SideBar/SettingsBtn/SettingsBtn";
 import ModalSettings from "../components/ModalSettings/ModalSettings";
-import {useTemplateService} from '../API/useTemplateService';
 import DialogsHeader from "../components/Dialogs/DialogsHeader/DialogsHeader";
 import {
     // ResizableHandle,
@@ -22,6 +20,7 @@ import { far } from '@fortawesome/free-regular-svg-icons'
 
 function MainApp() {
     const [modalActive, setModalActive] = useState(false);
+    const [selectedAccount, setSelectedAccount] = useState(null);
     const [selectedChat, setSelectedChat] = useState({
         name: 'Диалог 1',
         messages: [
@@ -37,7 +36,7 @@ function MainApp() {
     return (
         <div className="App">
             <div className={"sidebar"}>
-                <AccList />
+                <AccList onSelectAccount={setSelectedAccount}/>
                 <SettingsBtn setActive={setModalActive}/>
             </div>
             <ModalSettings
@@ -52,7 +51,9 @@ function MainApp() {
                             <DialogsStatus/>
                         </div>
                         <div className="list__wrapper">
-                            <DialogsList onSelectChat={handleSelectChat}/>
+                            {selectedAccount && (
+                                <DialogsList selectedAccount={selectedAccount} onSelectChat={handleSelectChat} />
+                            )}
                         </div>
                     </div>
                 </ResizablePanel>

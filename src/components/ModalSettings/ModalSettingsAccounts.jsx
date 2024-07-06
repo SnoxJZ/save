@@ -5,6 +5,8 @@ import ButtonEdit from "../ui/Button/ButtonEdit";
 import ButtonRemove from "../ui/Button/ButtonRemove";
 import { Select } from 'antd';
 import {addAccount, deleteAccount, getAccounts, requestCode} from "../../API/useAccountsService";
+import {useFetching} from "../../hooks/useFetching";
+import Loader from "../ui/Loader";
 
 const ModalSettingsAccounts = () => {
 
@@ -18,17 +20,12 @@ const ModalSettingsAccounts = () => {
     const [proxyUsername, setProxyUsername] = useState('');
     const [proxyPassword, setProxyPassword] = useState('');
     const [accounts, setAccounts] = useState([]);
+    const [fetchAccounts, isLoading, error] = useFetching(async () => {
+        const data = await getAccounts();
+        setAccounts(data);
+    });
 
     useEffect(() => {
-        const fetchAccounts = async () => {
-            try {
-                const accountsData = await getAccounts();
-                setAccounts(accountsData);
-            } catch (error) {
-                console.error("Failed to fetch accounts", error);
-            }
-        };
-
         fetchAccounts();
     }, []);
 
@@ -61,6 +58,7 @@ const ModalSettingsAccounts = () => {
         try {
             const response = await addAccount(phoneNumber, code, phoneCodeHash, password, proxySettings);
             console.log(response);
+            await fetchAccounts();
         } catch (error) {
             console.error(error);
         }
@@ -82,32 +80,37 @@ const ModalSettingsAccounts = () => {
     return (
         <div className="modal__content">
             <div className="account__details-wrapper">
-                {accounts.map(acc => (
-                        <div className="account__status list__item" key={acc._id}>
-                            <div className="account__details">
-                                <div className="acc__avatar">
-                                    <img src={`http://localhost:8000/avatars/${acc.photo_path}`} alt="avatar" className="acc__img"/>
+                {isLoading
+                    ? <div style={{display: "flex", justifyContent: "center"}}><Loader/></div>
+                    : <div>
+                        {accounts.map(acc => (
+                                <div className="account__status list__item" key={acc._id}>
+                                    <div className="account__details">
+                                        <div className="acc__avatar">
+                                            <img src={`http://localhost:8000/avatars/${acc.photo_path}`} alt="avatar" className="acc__img"/>
+                                        </div>
+                                        <div className="acc__desc">
+                                            <h1>{acc.first_name} {acc.last_name}</h1>
+                                            <p>{acc.phone_number}</p>
+                                            <p>{acc.username}</p>
+                                        </div>
+                                    </div>
+                                    <div className="proxy__details">
+                                        {acc.proxy ? (
+                                            <p>{acc.proxy.addr}:{acc.proxy.port}</p>
+                                        ) : (
+                                            <p>No proxy configured</p>
+                                        )}
+                                    </div>
+                                    <div className="acc__edit">
+                                        <ButtonRemove onClick={() => handleDeleteAccount(acc.phone_number)}/>
+                                    </div>
                                 </div>
-                                <div className="acc__desc">
-                                    <h1>{acc.first_name} {acc.last_name}</h1>
-                                    <p>{acc.phone_number}</p>
-                                    <p>{acc.username}</p>
-                                </div>
-                            </div>
-                            <div className="proxy__details">
-                                {acc.proxy ? (
-                                    <p>{acc.proxy.addr}:{acc.proxy.port}</p>
-                                ) : (
-                                    <p>No proxy configured</p>
-                                )}
-                            </div>
-                            <div className="acc__edit">
-                                <ButtonRemove onClick={() => handleDeleteAccount(acc.phone_number)}/>
-                            </div>
-                        </div>
 
-                    )
-                )}
+                            )
+                        )}
+                    </div>
+                }
             </div>
             <div className="account__connect">
                 <form action="">

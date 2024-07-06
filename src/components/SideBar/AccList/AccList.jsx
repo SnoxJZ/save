@@ -3,7 +3,7 @@ import AccItem from "../AccItem/AccItem";
 import classes from "./AccList.module.css"
 import {getAccounts} from "../../../API/useAccountsService";
 
-const AccList = () => {
+const AccList = ({onSelectAccount}) => {
 
     const [accounts, setAccounts] = useState([]);
 
@@ -23,7 +23,7 @@ const AccList = () => {
     return (
         <div className={classes.acc__list}>
             {accounts.map(acc =>
-                <AccItem acc={acc} key={acc.id}/>
+                <AccItem acc={acc} key={acc._id} onSelectAccount={onSelectAccount}/>
             )}
         </div>
     );
