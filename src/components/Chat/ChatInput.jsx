@@ -21,7 +21,7 @@ const ChatInput = ({newMessage, setNewMessage, handleSendMessage}) => {
                 placeholder="Введите сообщение"
             />
             <button className="emoji__button">
-                <FontAwesomeIcon icon="fa-regular fa-face-smile" style={{color: "rgb(123, 147, 182)", fontSize: "24px", marginRight: "10px"}}/>
+                <FontAwesomeIcon icon="fa-regular fa-face-smile" style={{color: "rgb(123, 147, 182)", fontSize: "24px"}}/>
             </button>
             <Button
                 onClick={handleSendMessage}

@@ -85,6 +85,7 @@
 
 .proxy__details {
     width: 33%;
+    margin-left: -40px;
 }
 
 .account__details-wrapper {
@@ -109,13 +110,29 @@ p{
 }
 
 .account__connect {
-    display: flex;
-    justify-content: space-between;
     padding: 10px 40px 10px 40px;
     margin-top: 10px;
     background-color: rgb(234, 239, 247);
     border-radius: 12px;
 }
+
+:where(.css-dev-only-do-not-override-m4timi).ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector {
+    border-color: rgb(110, 164, 244);
+}
+
+.proxy, .phone_req, .add__acc {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.request {
+    display: flex;
+    flex-direction: column;
+}
+
 
 
 

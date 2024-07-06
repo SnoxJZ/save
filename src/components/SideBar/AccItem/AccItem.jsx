@@ -9,9 +9,9 @@ const AccItem = ({acc, setAccount}) => {
     }
 
     return (
-            <div className={classes.acc__item}  title={acc.name}>
+            <div className={classes.acc__item} title={acc.username}>
                 <div className={classes.acc__avatar} >
-                    <img src={acc.avatar} alt="avatar" className={classes.acc__img}/>
+                    <img src={`http://localhost:8000/avatars/${acc.photo_path}`} alt="avatar" className={classes.acc__img}/>
                 </div>
                 <div className={counterClasses.join(' ')}>{acc.messages}</div>
             </div>
