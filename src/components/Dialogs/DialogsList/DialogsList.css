@@ -86,7 +86,7 @@
 .conversation {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .avatar {
@@ -98,7 +98,7 @@
 
 .conversation__details {
     flex: 1;
-    max-width: 70%;
+    max-width: 95%;
 }
 
 .name__time {
@@ -155,4 +155,11 @@
 
 .message__status__icon.unread {
     color: grey;
+}
+
+.load-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
 }

@@ -17,6 +17,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { far } from '@fortawesome/free-regular-svg-icons'
+import {DialogsProvider} from "../context/DialogsContext";
 
 function MainApp() {
     const [modalActive, setModalActive] = useState(false);
@@ -34,38 +35,40 @@ function MainApp() {
     };
 
     return (
-        <div className="App">
-            <div className={"sidebar"}>
-                <AccList onSelectAccount={setSelectedAccount}/>
-                <SettingsBtn setActive={setModalActive}/>
+        <DialogsProvider>
+            <div className="App">
+                <div className={"sidebar"}>
+                    <AccList onSelectAccount={setSelectedAccount}/>
+                    <SettingsBtn setActive={setModalActive}/>
+                </div>
+                <ModalSettings
+                    active={modalActive}
+                    setActive={setModalActive}
+                />
+                <ResizablePanelGroup direction="horizontal">
+                    <ResizablePanel minSize={20} defaultSize={25}>
+                        <div className="dialogs__column">
+                            <div className="head__wrapper">
+                                <DialogsHeader selectedAccount={selectedAccount}/>
+                                <DialogsStatus/>
+                            </div>
+                            <div className="list__wrapper">
+                                {selectedAccount && (
+                                    <DialogsList selectedAccount={selectedAccount} onSelectChat={handleSelectChat}/>
+                                )}
+                            </div>
+                        </div>
+                    </ResizablePanel>
+                    <ResizablePanel minSize={75}>
+                        {selectedChat
+                            ? <Chat
+                                selectedChat={selectedChat}
+                            />
+                            : <div className="chat__placeholder">Пожалуйста, выберите диалог</div>}
+                    </ResizablePanel>
+                </ResizablePanelGroup>
             </div>
-            <ModalSettings
-                active={modalActive}
-                setActive={setModalActive}
-            />
-            <ResizablePanelGroup direction="horizontal">
-                <ResizablePanel minSize={20} defaultSize={25}>
-                    <div className="dialogs__column">
-                        <div className="head__wrapper">
-                            <DialogsHeader/>
-                            <DialogsStatus/>
-                        </div>
-                        <div className="list__wrapper">
-                            {selectedAccount && (
-                                <DialogsList selectedAccount={selectedAccount} onSelectChat={handleSelectChat} />
-                            )}
-                        </div>
-                    </div>
-                </ResizablePanel>
-                <ResizablePanel minSize={75}>
-                    {selectedChat
-                        ? <Chat
-                            selectedChat={selectedChat}
-                        />
-                        : <div className="chat__placeholder">Пожалуйста, выберите диалог</div>}
-                </ResizablePanel>
-            </ResizablePanelGroup>
-        </div>
+        </DialogsProvider>
     );
 }
 

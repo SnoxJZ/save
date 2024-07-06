@@ -11,3 +11,13 @@ export const getDialogs = async (phoneNumber, offset = 0, limit = 20) => {
         throw error;
     }
 };
+
+export const getUnreadDialogs = async (phoneNumber) => {
+    try {
+        const response = await axios.get(`/telegram/get_unread_dialogs/${phoneNumber}`);
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching unread dialogs", error);
+        throw error;
+    }
+};

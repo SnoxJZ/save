@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Input from "../ui/Input/Input";
 import Button from "../ui/Button/Button";
-import ButtonEdit from "../ui/Button/ButtonEdit";
 import ButtonRemove from "../ui/Button/ButtonRemove";
 import { Select } from 'antd';
 import {addAccount, deleteAccount, getAccounts, requestCode} from "../../API/useAccountsService";
@@ -77,6 +76,19 @@ const ModalSettingsAccounts = () => {
         }
     };
 
+    const handleProxyAddressChange = (e) => {
+        const value = e.target.value;
+        setProxyAddress(value);
+
+        const parts = value.split(':');
+        if (parts.length === 4) {
+            setProxyAddress(parts[0]);
+            setProxyPort(parts[1]);
+            setProxyUsername(parts[2]);
+            setProxyPassword(parts[3]);
+        }
+    };
+
     return (
         <div className="modal__content">
             <div className="account__details-wrapper">
@@ -87,7 +99,7 @@ const ModalSettingsAccounts = () => {
                                 <div className="account__status list__item" key={acc._id}>
                                     <div className="account__details">
                                         <div className="acc__avatar">
-                                            <img src={`http://localhost:8000/avatars/${acc.photo_path}`} alt="avatar" className="acc__img"/>
+                                            <img src={`http://localhost:8000${acc.photo_url}`} alt="avatar" className="acc__img"/>
                                         </div>
                                         <div className="acc__desc">
                                             <h1>{acc.first_name} {acc.last_name}</h1>
@@ -106,7 +118,6 @@ const ModalSettingsAccounts = () => {
                                         <ButtonRemove onClick={() => handleDeleteAccount(acc.phone_number)}/>
                                     </div>
                                 </div>
-
                             )
                         )}
                     </div>
@@ -126,10 +137,30 @@ const ModalSettingsAccounts = () => {
                                     { value: 'socks5', label: 'socks5' },
                                 ]}
                             />
-                            <Input type="text" placeholder='proxy address' value={proxyAddress} onChange={(e) => setProxyAddress(e.target.value)} />
-                            <Input type="text" placeholder='port' value={proxyPort} onChange={(e) => setProxyPort(e.target.value)} />
-                            <Input type="text" placeholder='login' value={proxyUsername} onChange={(e) => setProxyUsername(e.target.value)} />
-                            <Input type="text" placeholder='password' value={proxyPassword} onChange={(e) => setProxyPassword(e.target.value)} />
+                            <Input
+                                type="text"
+                                placeholder='proxy address'
+                                value={proxyAddress}
+                                onChange={handleProxyAddressChange}
+                            />
+                            <Input
+                                type="text"
+                                placeholder='port'
+                                value={proxyPort}
+                                onChange={(e) => setProxyPort(e.target.value)}
+                            />
+                            <Input
+                                type="text"
+                                placeholder='login'
+                                value={proxyUsername}
+                                onChange={(e) => setProxyUsername(e.target.value)}
+                            />
+                            <Input
+                                type="text"
+                                placeholder='password'
+                                value={proxyPassword}
+                                onChange={(e) => setProxyPassword(e.target.value)}
+                            />
                         </div>
                         <div className="phone_req">
                             <Input
@@ -148,8 +179,6 @@ const ModalSettingsAccounts = () => {
                         <Button style={{ width: "100%" }} onClick={handleAddAccount}>Подключить аккаунт</Button>
                     </div>
                 </form>
-
-
             </div>
         </div>
     );
