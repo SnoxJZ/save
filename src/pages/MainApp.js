@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
 import '../styles/reset.css';
 import '../styles/App.css';
 import AccList from "../components/SideBar/AccList/AccList";
@@ -6,7 +6,6 @@ import SettingsBtn from "../components/SideBar/SettingsBtn/SettingsBtn";
 import ModalSettings from "../components/ModalSettings/ModalSettings";
 import DialogsHeader from "../components/Dialogs/DialogsHeader/DialogsHeader";
 import {
-    // ResizableHandle,
     ResizablePanel,
     ResizablePanelGroup,
 } from "../components/ui/resizable"
@@ -17,18 +16,13 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { far } from '@fortawesome/free-regular-svg-icons'
-import {DialogsProvider} from "../context/DialogsContext";
+import { DialogsProvider } from "../context/DialogsContext";
 
 function MainApp() {
     const [modalActive, setModalActive] = useState(false);
     const [selectedAccount, setSelectedAccount] = useState(null);
-    const [selectedChat, setSelectedChat] = useState({
-        name: 'Диалог 1',
-        messages: [
-            { text: 'Привет, как дела?', sender: 'them', time: '15:00', status: 'read' },
-            { text: 'Все хорошо, а у тебя?', sender: 'me', time: '15:05', status: 'unread' },
-        ],
-    });
+    const [selectedChat, setSelectedChat] = useState(null);
+    const [statuses, setStatuses] = useState([]);
 
     const handleSelectChat = (chat) => {
         setSelectedChat(chat);
@@ -53,9 +47,11 @@ function MainApp() {
                                 <DialogsStatus/>
                             </div>
                             <div className="list__wrapper">
-                                {selectedAccount && (
+                                {selectedAccount ? (
                                     <DialogsList selectedAccount={selectedAccount} onSelectChat={handleSelectChat}/>
-                                )}
+                                )
+                                : <div className="chat__placeholder" style={{display: "flex", justifyContent: "center", alignItems: "center", height: "100%"}}>Выберите аккаунт</div>
+                                }
                             </div>
                         </div>
                     </ResizablePanel>
@@ -63,8 +59,10 @@ function MainApp() {
                         {selectedChat
                             ? <Chat
                                 selectedChat={selectedChat}
+                                statuses={statuses}
+                                userId={selectedAccount.username}
                             />
-                            : <div className="chat__placeholder">Пожалуйста, выберите диалог</div>}
+                            : <div className="chat__placeholder" style={{display: "flex", justifyContent: "center", alignItems: "center", height: "100%"}}>Пожалуйста, выберите диалог</div>}
                     </ResizablePanel>
                 </ResizablePanelGroup>
             </div>
@@ -73,4 +71,4 @@ function MainApp() {
 }
 
 export default MainApp;
-library.add(fab, fas, far)
+library.add(fab, fas, far);

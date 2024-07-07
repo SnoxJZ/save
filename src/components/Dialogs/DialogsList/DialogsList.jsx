@@ -6,10 +6,10 @@ import { Button, Spin } from "antd";
 import { useFetching } from "../../../hooks/useFetching";
 import { DialogsContext } from "../../../context/DialogsContext";
 
-const DialogsList = ({ selectedAccount }) => {
+const DialogsList = ({ selectedAccount, onSelectChat }) => {
     const rootRef = useRef(null);
     const { dialogs, setDialogs } = useContext(DialogsContext);
-    const [limit, setLimit] = useState(20);
+    const [limit, setLimit] = useState(40);
     const [hasMore, setHasMore] = useState(true);
 
     const [fetchDialogs, isLoading, error] = useFetching(async () => {
@@ -34,20 +34,22 @@ const DialogsList = ({ selectedAccount }) => {
     useEffect(() => {
         if (selectedAccount) {
             setDialogs([]);
-            setLimit(20);
+            setLimit(40);
             setHasMore(true);
             fetchDialogs();
         }
     }, [selectedAccount]);
 
     useEffect(() => {
-        const ws = new WebSocket(`ws://localhost:8000/telegram/ws/${selectedAccount.phone_number}`);
-        ws.onmessage = async (event) => {
-            await fetchDialogs();
-        };
-        return () => {
-            ws.close();
-        };
+        if (selectedAccount) {
+            const ws = new WebSocket(`ws://localhost:8000/telegram/ws/${selectedAccount.phone_number}`);
+            ws.onmessage = async (event) => {
+                await fetchDialogs();
+            };
+            return () => {
+                ws.close();
+            };
+        }
     }, [selectedAccount]);
 
     useEffect(() => {
@@ -68,7 +70,11 @@ const DialogsList = ({ selectedAccount }) => {
                 <ScrollArea.Viewport className="ScrollAreaViewport">
                     <div style={{ padding: '15px 0 15px 20px' }}>
                         {dialogs.map((conversation) => (
-                            <div className="conversation" key={conversation.chat_id}>
+                            <div
+                                className="conversation"
+                                key={conversation.chat_id}
+                                onClick={() => onSelectChat({ ...conversation, phone_number: selectedAccount.phone_number })}
+                            >
                                 <div className="conversation__details">
                                     <div className="name__time">
                                         <span className="name">{conversation.chat_title}</span>

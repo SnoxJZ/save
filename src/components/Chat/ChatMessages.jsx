@@ -1,20 +1,18 @@
-import React, {useEffect, useRef} from 'react';
+import React, { useEffect } from 'react';
 import ChatMessage from "./ChatMessage";
 
-const ChatMessages = ({messages}) => {
-
-    const messagesEndRef = useRef(null);
+const ChatMessages = ({ messages, messagesEndRef, userId }) => {
 
     useEffect(() => {
-        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     }, [messages]);
 
     return (
         <div className="chat__messages">
-            {messages.map((msg, index) => (
-                <ChatMessage msg={msg} key={index}/>
+            {messages.slice().reverse().map((msg) => (
+                <ChatMessage msg={msg} key={msg.message_id} userId={userId} />
             ))}
-            <div ref={messagesEndRef}/>
+            <div ref={messagesEndRef} />
         </div>
     );
 };

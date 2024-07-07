@@ -21,3 +21,27 @@ export const getUnreadDialogs = async (phoneNumber) => {
         throw error;
     }
 };
+
+export const getChatMessages = async (phoneNumber, chatId) => {
+    try {
+        const response = await axios.get(`/telegram/get_chat/${phoneNumber}/${chatId}`);
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching chat messages", error);
+        throw error;
+    }
+};
+
+export const sendChatMessage = async (phoneNumber, chatId, message) => {
+    try {
+        const response = await axios.post('/telegram/send_chat_message', {
+            phone_number: phoneNumber,
+            chat_id: chatId,
+            message: message
+        });
+        return response.data;
+    } catch (error) {
+        console.error("Error sending chat message", error);
+        throw error;
+    }
+};

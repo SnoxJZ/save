@@ -1,5 +1,6 @@
+// API/useStatusService.js
 import axios from 'axios';
-import {useAuth} from "../context/AuthContext";
+import { useAuth } from "../context/AuthContext";
 
 export const useStatusService = () => {
     const { token } = useAuth();
@@ -40,10 +41,28 @@ export const useStatusService = () => {
         return response.data;
     };
 
+    const assignStatusToDialog = async (chatId, statusId) => {
+        try {
+            const response = await axios.put('/dialogs/assign_status_to_dialog', {
+                chat_id: chatId,
+                status_id: statusId
+            }, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            return response.data;
+        } catch (error) {
+            console.error("Error assigning status to dialog", error);
+            throw error;
+        }
+    };
+
     return {
         getStatuses,
         addStatus,
         deleteStatus,
         editStatus,
+        assignStatusToDialog,
     };
 };
