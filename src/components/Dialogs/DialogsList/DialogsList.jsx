@@ -7,7 +7,7 @@ import { useFetching } from "../../../hooks/useFetching";
 import { DialogsContext } from "../../../context/DialogsContext";
 import DialogsStatus from '../DialogsStatus/DialogsStatus';  // Импортируем DialogsStatus
 
-const DialogsList = ({ selectedAccount, onSelectChat, onStatusChange }) => {
+const DialogsList = ({ selectedAccount, onSelectChat, onStatusChange, onForwardMessages }) => {
     const rootRef = useRef(null);
     const { dialogs, setDialogs } = useContext(DialogsContext);
     const [limit, setLimit] = useState(40);
@@ -86,6 +86,7 @@ const DialogsList = ({ selectedAccount, onSelectChat, onStatusChange }) => {
                                 className="conversation"
                                 key={conversation.chat_id}
                                 onClick={() => onSelectChat({ ...conversation, phone_number: selectedAccount.phone_number })}
+                                onDoubleClick={() => onForwardMessages(conversation.chat_id)} // Пересылка сообщений
                             >
                                 <div className="conversation__details">
                                     <div className="name__time">

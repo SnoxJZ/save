@@ -136,11 +136,11 @@ p{
 
 
 
-.templates__list {
+.templates__list, .users__list {
     margin: 0 auto;
 }
 
-.template__info {
+.template__info, .user__info {
     width: 70%;
 }
 

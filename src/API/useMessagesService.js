@@ -45,3 +45,13 @@ export const sendChatMessage = async (phoneNumber, chatId, message) => {
         throw error;
     }
 };
+
+export const forwardChatMessages = async (phoneNumber, fromChatId, toChatId, messageIds) => {
+    const response = await axios.post(`/telegram/forward_messages`, {
+        phone_number: phoneNumber,
+        from_chat_id: fromChatId,
+        to_chat_id: toChatId,
+        message_ids: messageIds,
+    });
+    return response.data;
+};

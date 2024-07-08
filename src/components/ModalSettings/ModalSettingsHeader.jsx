@@ -23,6 +23,12 @@ const ModalSettingsHeader = ({openTab, setOpenTab}) => {
                 >
                     Статусы
                 </li>
+                <li
+                    className={openTab === 'admin' ? "md__header-item active" : "md__header-item"}
+                    onClick={() => setOpenTab('admin')}
+                >
+                    Admin
+                </li>
             </ul>
         </div>
     );

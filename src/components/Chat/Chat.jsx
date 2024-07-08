@@ -1,16 +1,19 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import './Chat.css';
 import ChatHeader from "./ChatHeader";
 import ChatMessages from "./ChatMessages";
 import ChatInput from "./ChatInput";
 import ChatTemplate from "./ChatTemplate";
-import { getChatMessages, sendChatMessage } from '../../API/useMessagesService';
+import { getChatMessages, sendChatMessage, forwardChatMessages } from '../../API/useMessagesService';
 import { useFetching } from "../../hooks/useFetching";
-import {Spin} from "antd";
+import { Spin } from "antd";
+import { DialogsContext } from "../../context/DialogsContext";
 
 const Chat = ({ selectedChat, statuses, userId }) => {
+    const { dialogs } = useContext(DialogsContext);
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState('');
+    const [selectedMessages, setSelectedMessages] = useState([]);
     const messagesEndRef = useRef(null);
 
     const [fetchMessages, isLoading, error] = useFetching(async () => {
@@ -95,6 +98,15 @@ const Chat = ({ selectedChat, statuses, userId }) => {
         }
     };
 
+    const handleForwardMessages = async (toChatId) => {
+        try {
+            await forwardChatMessages(selectedChat.phone_number, selectedChat.chat_id, toChatId, selectedMessages);
+            alert('Messages forwarded successfully!');
+            setSelectedMessages([]);
+        } catch (error) {
+            console.error('Error forwarding messages:', error);
+        }
+    };
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -108,7 +120,12 @@ const Chat = ({ selectedChat, statuses, userId }) => {
             ) : error ? (
                 <div>Error: {error}</div>
             ) : (
-                <ChatMessages messages={messages} messagesEndRef={messagesEndRef} userId={userId} />
+                <ChatMessages
+                    messages={messages}
+                    messagesEndRef={messagesEndRef}
+                    userId={userId}
+                    onSelectMessage={(messageId) => setSelectedMessages(prev => [...prev, messageId])}
+                />
             )}
             <div className="chat__input__container">
                 <ChatTemplate setNewMessage={setNewMessage} />
@@ -116,6 +133,7 @@ const Chat = ({ selectedChat, statuses, userId }) => {
                     newMessage={newMessage}
                     setNewMessage={setNewMessage}
                     handleSendMessage={handleSendMessage}
+                    onForwardMessages={handleForwardMessages}
                 />
             </div>
         </div>
