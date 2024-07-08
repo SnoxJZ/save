@@ -5,8 +5,9 @@ import { getDialogs } from "../../../API/useMessagesService";
 import { Button, Spin } from "antd";
 import { useFetching } from "../../../hooks/useFetching";
 import { DialogsContext } from "../../../context/DialogsContext";
+import DialogsStatus from '../DialogsStatus/DialogsStatus';  // Импортируем DialogsStatus
 
-const DialogsList = ({ selectedAccount, onSelectChat }) => {
+const DialogsList = ({ selectedAccount, onSelectChat, onStatusChange }) => {
     const rootRef = useRef(null);
     const { dialogs, setDialogs } = useContext(DialogsContext);
     const [limit, setLimit] = useState(40);
@@ -64,8 +65,19 @@ const DialogsList = ({ selectedAccount, onSelectChat }) => {
         }
     }, []);
 
+    const fetchAllDialogs = async () => {
+        setDialogs([]);
+        await fetchDialogs();
+    };
+
+    const handleStatusChange = (newDialogs) => {
+        setDialogs(newDialogs);
+        onStatusChange(newDialogs);  // Передаем новые диалоги в родительский компонент
+    };
+
     return (
         <div className="dialogs__list">
+            <DialogsStatus onStatusChange={handleStatusChange} fetchAllDialogs={fetchAllDialogs} /> {/* Вставляем DialogsStatus */}
             <ScrollArea.Root className="ScrollAreaRoot" ref={rootRef}>
                 <ScrollArea.Viewport className="ScrollAreaViewport">
                     <div style={{ padding: '15px 0 15px 20px' }}>

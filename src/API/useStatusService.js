@@ -1,4 +1,3 @@
-// API/useStatusService.js
 import axios from 'axios';
 import { useAuth } from "../context/AuthContext";
 
@@ -58,11 +57,31 @@ export const useStatusService = () => {
         }
     };
 
+    const getDialogById = async (chatId) => {
+        const response = await axios.get(`/dialogs/get_dialog/${chatId}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        return response.data;
+    };
+
+    const getDialogsByStatus = async (statusId) => {
+        const response = await axios.get(`/dialogs/get_dialogs_by_status/${statusId}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        return response.data;
+    };
+
     return {
         getStatuses,
         addStatus,
         deleteStatus,
         editStatus,
         assignStatusToDialog,
+        getDialogById,
+        getDialogsByStatus
     };
 };

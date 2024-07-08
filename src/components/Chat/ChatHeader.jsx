@@ -8,18 +8,27 @@ import { useFetching } from "../../hooks/useFetching";
 import Loader from "../ui/Loader";
 
 const ChatHeader = ({ selectedChat }) => {
-    const { getStatuses, assignStatusToDialog } = useStatusService();
+    const { getStatuses, assignStatusToDialog, getDialogById } = useStatusService();
     const [statuses, setStatuses] = useState([]);
-    const [currentStatus, setCurrentStatus] = useState(null); // Новое состояние для текущего статуса
+    const [currentStatus, setCurrentStatus] = useState(null);
     const [fetchStatuses, isLoading, error] = useFetching(async () => {
         const data = await getStatuses();
         setStatuses(data);
     });
 
+    const fetchDialogStatus = async (chatId) => {
+        try {
+            const dialog = await getDialogById(chatId);
+            setCurrentStatus(dialog.status_id);
+        } catch (error) {
+            console.error("Error fetching dialog status", error);
+        }
+    };
+
     useEffect(() => {
         fetchStatuses();
         if (selectedChat) {
-            setCurrentStatus(selectedChat.status_id);
+            fetchDialogStatus(selectedChat.chat_id); // Получение статуса диалога
         }
     }, [selectedChat]);
 
@@ -46,8 +55,9 @@ const ChatHeader = ({ selectedChat }) => {
         key: item.id,
         label: (
             <div style={{ display: "flex", alignItems: "center" }}>
-                <span style={{ width: "20px", height: "20px", borderRadius: "50%", backgroundColor: item.color }}></span>
+                <span style={{ width: "20px", height: "20px", borderRadius: "50%", backgroundColor: item.color, marginRight: "10px" }}></span>
                 <StatusElement>{item.status}</StatusElement>
+                {currentStatus === item.id && <FontAwesomeIcon icon="fa-solid fa-check" style={{ color: 'green', marginLeft: "10px" }} />}  {/* Зеленая галочка */}
             </div>
         ),
     }));

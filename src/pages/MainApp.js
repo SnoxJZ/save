@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import '../styles/reset.css';
 import '../styles/App.css';
 import AccList from "../components/SideBar/AccList/AccList";
@@ -9,7 +9,6 @@ import {
     ResizablePanel,
     ResizablePanelGroup,
 } from "../components/ui/resizable"
-import DialogsStatus from "../components/Dialogs/DialogsStatus/DialogsStatus";
 import DialogsList from "../components/Dialogs/DialogsList/DialogsList";
 import Chat from "../components/Chat/Chat";
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -28,6 +27,10 @@ function MainApp() {
         setSelectedChat(chat);
     };
 
+    const handleStatusChange = (newDialogs) => {
+        setStatuses(newDialogs);
+    };
+
     return (
         <DialogsProvider>
             <div className="App">
@@ -44,13 +47,16 @@ function MainApp() {
                         <div className="dialogs__column">
                             <div className="head__wrapper">
                                 <DialogsHeader selectedAccount={selectedAccount}/>
-                                <DialogsStatus/>
                             </div>
                             <div className="list__wrapper">
                                 {selectedAccount ? (
-                                    <DialogsList selectedAccount={selectedAccount} onSelectChat={handleSelectChat}/>
-                                )
-                                : <div className="chat__placeholder" style={{display: "flex", justifyContent: "center", alignItems: "center", height: "100%"}}>Выберите аккаунт</div>
+                                        <DialogsList
+                                            selectedAccount={selectedAccount}
+                                            onSelectChat={handleSelectChat}
+                                            onStatusChange={handleStatusChange}  // Передаем handleStatusChange
+                                        />
+                                    )
+                                    : <div className="chat__placeholder" style={{display: "flex", justifyContent: "center", alignItems: "center", height: "100%"}}>Выберите аккаунт</div>
                                 }
                             </div>
                         </div>
