@@ -197,3 +197,10 @@ p{
     color: #000000;
     font-weight: 600;
 }
+
+.users__add {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: 10px;
+}

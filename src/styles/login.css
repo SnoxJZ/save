@@ -16,8 +16,7 @@
     margin-bottom: 10px;
 }
 
-form fieldset input[type="text"],
-input[type="password"] {
+.login {
     appearance: none;
     background: #e5e5e5;
     border: none;
